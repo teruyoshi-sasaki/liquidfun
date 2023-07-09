@@ -61,7 +61,7 @@ void b2CollidePolygonAndCircle(
 
 	// Find the min separating edge.
 	int32 normalIndex = 0;
-	float32 separation = -b2_maxFloat;
+	float32 sep = -b2_maxFloat;
 	float32 radius = polygonA->m_radius + circleB->m_radius;
 	int32 vertexCount = polygonA->m_count;
 	const b2Vec2* vertices = polygonA->m_vertices;
@@ -77,9 +77,9 @@ void b2CollidePolygonAndCircle(
 			return;
 		}
 
-		if (s > separation)
+		if (s > sep)
 		{
-			separation = s;
+			sep = s;
 			normalIndex = i;
 		}
 	}
@@ -91,7 +91,7 @@ void b2CollidePolygonAndCircle(
 	b2Vec2 v2 = vertices[vertIndex2];
 
 	// If the center is inside the polygon ...
-	if (separation < b2_epsilon)
+	if (sep < b2_epsilon)
 	{
 		manifold->pointCount = 1;
 		manifold->type = b2Manifold::e_faceA;

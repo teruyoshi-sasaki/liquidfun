@@ -257,7 +257,7 @@ bool b2PolygonShape::TestPoint(const b2Transform& xf, const b2Vec2& p) const
 	return true;
 }
 
-void b2PolygonShape::ComputeDistance(const b2Transform& xf, const b2Vec2& p, float32* distance, b2Vec2* normal, int32 childIndex) const
+void b2PolygonShape::ComputeDistance(const b2Transform& xf, const b2Vec2& p, float32* dist, b2Vec2* normal, int32 childIndex) const
 {
 	B2_NOT_USED(childIndex);
 
@@ -290,13 +290,13 @@ void b2PolygonShape::ComputeDistance(const b2Transform& xf, const b2Vec2& p, flo
 			}
 		}
 
-		*distance = b2Sqrt(minDistance2);
+		*dist = b2Sqrt(minDistance2);
 		*normal = b2Mul(xf.q, minDistance);
 		normal->Normalize();
 	}
 	else
 	{
-		*distance = maxDistance;
+		*dist = maxDistance;
 		*normal = b2Mul(xf.q, normalForMaxDistance);
 	}
 }

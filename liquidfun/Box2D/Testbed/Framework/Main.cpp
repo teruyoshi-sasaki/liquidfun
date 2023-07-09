@@ -472,14 +472,14 @@ static void Mouse(int32 button, int32 state, int32 x, int32 y)
 
 		if (state == GLUT_DOWN)
 		{
-			b2Vec2 p = ConvertScreenToWorld(x, y);
+			b2Vec2 pp = ConvertScreenToWorld(x, y);
 			if (mod == GLUT_ACTIVE_SHIFT)
 			{
-				test->ShiftMouseDown(p);
+				test->ShiftMouseDown(pp);
 			}
 			else
 			{
-				test->MouseDown(p);
+				test->MouseDown(pp);
 			}
 		}
 
@@ -679,12 +679,12 @@ int main(int argc, char** argv)
 	glui->add_checkbox_to_panel(drawPanel, "Statistics", &settings.drawStats);
 	glui->add_checkbox_to_panel(drawPanel, "Profile", &settings.drawProfile);
 
-	int32 testCount = 0;
+	int32 testCount_ = 0;
 	TestEntry* e = g_testEntries;
 	while (e->createFcn)
 	{
-		testList->add_item(testCount, e->name);
-		++testCount;
+		testList->add_item(testCount_, e->name);
+		++testCount_;
 		++e;
 	}
 

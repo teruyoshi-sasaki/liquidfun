@@ -181,10 +181,10 @@ bool BodyTracker::ReadBaseline()
 	// Parse the header
 	std::string header;
 	std::getline(in, header);
-	std::istringstream buf(header);
+	std::istringstream buff(header);
 	m_baselineFlags = 0;
 	std::vector<int> flagVals;
-	for (std::string tok ; std::getline(buf, tok, ' ') ; ) {
+	for (std::string tok ; std::getline(buff, tok, ' ') ; ) {
 		if (tok  == "#") continue;
 		else if (tok == "POSITION") flagVals.push_back(TRACK_POSITION);
 		else if (tok == "ANGLE") flagVals.push_back(TRACK_ANGLE);
